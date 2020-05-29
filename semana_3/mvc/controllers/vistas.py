@@ -1,5 +1,7 @@
 import web
-
+import time
+from datetime import date
+from datetime import datetime
 class Visitas:
     def GET(self, nombre):
       try:
@@ -8,19 +10,23 @@ class Visitas:
         if nombre:
           web.setcookie("nombre",nombre,expires="",domain=None)
         else:
-          nombre="NA"
+          nombre="anonimo"
           web.setcookie("nombre",nombre,expires="",domain=None)
-
         print(cookie)
+        today = date.today()
+        #Fecha actual
+        now = datetime.now())
+        print(today)
+        print(now)
         if cookie.get("visitas"):
           visitas=int(cookie.get("visitas"))
           print("hay "+str(visitas))
           visitas+=1
           web.setcookie("visitas",str(visitas),expires="",domain=None)
-          return "visitas"+str(visitas)
         else:
           web.setcookie("visitas",str(1),expires="",domain=None)
           visitas=1
-        return "visitas:" + str(visitas)+"Nombre:"+nombre
+
+        return "visitas:" + str(visitas)+"   Nombre:"+nombre
       except Exception as e:
         return 'Error'+ str(e.args)
