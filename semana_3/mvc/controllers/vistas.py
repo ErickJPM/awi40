@@ -21,11 +21,13 @@ class Visitas:
           web.setcookie("visitas",str(1),expires="",domain=None)
           visitas=1
         now = datetime.now()
-        fecha=datetime.date()
+        fecha=now.date()
+        print(fecha)
         web.setcookie("fecha",str(fecha),expires="",domain=None)
-        t = datetime.time(datetime.now())
-        print(t)
-
-        return "visitas:" + str(visitas)+"   Nombre:"+nombre
+        hora = datetime.time(datetime.now())
+        print(hora)
+        web.setcookie("hora",str(hora),expires="",domain=None)
+        
+        return "visitas:" + str(visitas)+"   Nombre:"+nombre+"\nFecha: "+str(fecha)+"    Hora: "+ str(hora)
       except Exception as e:
         return 'Error'+ str(e.args)
